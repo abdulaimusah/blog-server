@@ -20,9 +20,17 @@ var router = express.Router();
 //implementation of database queries
 // get all posts
 router.get("/", async function (req, res) {
+
+  
+  dbo.connectToServer(function (err) {
+    if (err) {
+      console.error(err);
+      process.exit();
+    }
+  });
     
   
-    const dbConnect = await dbo.getDb();
+    const dbConnect = dbo.getDb();
 
     dbConnect
      .collection("posts")
