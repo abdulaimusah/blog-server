@@ -1,36 +1,17 @@
-/*var express = require('express');
-var router = express.Router();
-
-
-router.get('/', function(req, res, next) {
-  
-
-
-});
-
-module.exports = router; */
-
 var express = require('express');
 var dbo = require("./../db/conn");
 
+
 var router = express.Router();
 
-//router.all()
+
 
 //implementation of database queries
 // get all posts
 router.get("/", async function (req, res) {
 
-  
-  dbo.connectToServer(function (err) {
-    if (err) {
-      console.error(err);
-      process.exit();
-    }
-  });
-    
-  
-    const dbConnect = dbo.getDb();
+
+  dbConnect = dbo.getDb()
 
     dbConnect
      .collection("posts")
@@ -40,7 +21,6 @@ router.get("/", async function (req, res) {
          res.status(400).send("Error fetching posts!");
        }
        else {
-         //console.log(result);
          res.json(result);
        }
      });
