@@ -15,7 +15,7 @@ router.get("/", async function (req, res) {
 
     dbConnect
      .collection("posts")
-     .find({}).limit(10)
+     .find({}).limit(4)
      .toArray(function (err, result) {
        if (err) {
          res.status(400).send("Error fetching posts!");
