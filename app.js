@@ -5,15 +5,15 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const dbo = require('./db/conn');
 var postsRouter = require('./routes/posts');
+var onePostRouter = require('./routes/post')
 var cors = require('cors');
 
 
 
 var app = express();
 
-// view engine setup
 
-
+// call app middlewares
 app.use(logger('dev'));
 app.use(express.json());
 app.use(cors())
@@ -21,8 +21,11 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// get posts data
-app.use('/posts', postsRouter);
+
+// get one post 
+app.use('/onepost', onePostRouter);
+// get all posts
+app.use('/allposts', postsRouter);
 
 // get index page
 app.get('/', function (req, res) {

@@ -1,12 +1,12 @@
 var express = require('express');
 var dbo = require("./../db/conn");
+//const { ObjectId } = require('mongodb');
 
 
 var router = express.Router();
 
 
 
-//implementation of database queries
 // get all posts
 router.get("/", async function (req, res) {
 
@@ -25,6 +25,29 @@ router.get("/", async function (req, res) {
        }
      });
 });
+
+module.exports = router ;
+
+/** 
+// find a post
+router.get("post/:id", async function(req, res) {
+  console.log(req.params.id)
+    
+    // retrieve requested post ID
+    const requestId = req.params.id.trim();
+    
+    // get database connection and append collection findOne method
+     dbo.getDb()
+     .collection("posts")
+     .findOne({
+      _id: ObjectId(requestId)
+     })
+     .then(result => {
+      console.log(typeof result);
+      res.json(result);
+     });
+})
+
 // create a post
 router.post("/create", async function(req, res) {
     const dbConnect = dbo.getDb();
@@ -95,3 +118,5 @@ router.delete("/delete", function (req, res) {
     });
 });
 module.exports = router;
+
+**/
